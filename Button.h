@@ -14,8 +14,6 @@ private:
 
     static sf::Font* font;
 
-    bool pressed = false;
-
     sf::Sprite* m_sprite = new sf::Sprite();
 
     sf::Text* m_text = new sf::Text();
@@ -24,10 +22,20 @@ private:
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
+    void (*func)(void*) = nullptr;
+
+    void* args = nullptr;
+protected:
+    void resizeButton();
 public:
     Button(const std::string &string, const sf::Vector2f &position);
 
+    bool contains(sf::Vector2f position);
+
+    bool clicked(sf::Event& event);
+
+    void setFunction(void (*function)(void *), void *args);
 };
 
-
+void test(void *v = 0);
 #endif //WIDGETS_BUTTON_H
