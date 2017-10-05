@@ -10,18 +10,22 @@
 
 class Button : public sf::Drawable{
 private:
-    bool value = true;
+    static sf::Texture* texture;
 
-    sf::Sprite* sprite;
+    static sf::Font* font;
 
-    std::string text;
+    bool pressed = false;
 
-    sf::Vector2f position;
+    sf::Sprite* m_sprite = new sf::Sprite();
+
+    sf::Text* m_text = new sf::Text();
+
+    sf::Vector2f m_position;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 public:
-    Button(sf::Sprite *sprite, const std::string &text, const sf::Vector2f &position);
+    Button(const std::string &string, const sf::Vector2f &position);
 
 };
 
